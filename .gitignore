@@ -1,0 +1,27 @@
+# 模型权重
+**/*.pth
+**/model_wts/
+
+# 数据集与视频
+data/
+data_ucf_101/
+*.avi
+*.mp4
+*.mov
+*.mkv
+*.wmv
+*.flv
+*.webm
+
+# 图片
+*.jpg
+*.jpeg
+# *.png
+*.gif
+*.bmp
+*.tiff
+*.webp
+
+# Python 缓存
+__pycache__/
+*.pyc
