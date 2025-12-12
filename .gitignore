@@ -22,6 +22,14 @@ data_ucf_101/
 *.tiff
 *.webp
 
+# 忽略 TensorBoard 日志
+**/log/
+**/runs/
+events.out.tfevents.*
+
+# 忽略 PyCharm 配置
+.idea/
+
 # Python 缓存
 __pycache__/
 *.pyc
