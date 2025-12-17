@@ -18,18 +18,21 @@ class VideoDataset(Dataset):
 
         # 读取对应训练集/验证集/测试集下的各种类别的行为动作
         # 每个行为动作下的视频已经被处理成单个图片数据
-        # 将对应动作的数据的文件名作为标签保存到labels列表中，对应的动作数据集的路径保存到self.fnames列表中，标签和数据是一一对应的状态
+        # 将对应动作的数据的文件名作为标签保存到classes列表中，对应的动作数据集的路径保存到self.fnames列表中，标签和数据是一一对应的状态
         folder = os.path.join(self.dataset_path, images_path)
-        self.fnames, labels = [], []
+        self.fnames = []
+        classes = []
         for label in sorted(os.listdir(folder)):
             for fname in os.listdir(os.path.join(folder, label)):
                 self.fnames.append(os.path.join(folder, label, fname))
-                labels.append(label)
+                classes.append(label)
         print('Number of {} videos: {:d}'.format(images_path, len(self.fnames)))
 
+        # 保存类别名列表（用于后续查表）
+        self.classes = sorted(set(classes))
         # 获取对应视频的标签，并将标签转化为int的数字类型，同时转化为array格式
-        self.label2index = {label: index for index, label in enumerate(sorted(set(labels)))}
-        self.label_array = np.array([self.label2index[label] for label in labels], dtype=int)
+        self.label2index = {label: index for index, label in enumerate(self.classes)}
+        self.label_array = np.array([self.label2index[label] for label in classes], dtype=int)
 
     def __len__(self):
         return len(self.fnames)
@@ -41,10 +44,10 @@ class VideoDataset(Dataset):
         buffer = VideoDataset.to_tensor(buffer)  # 对维度进行转化
 
         # 获取对应视频的标签数据
-        labels = np.array(self.label_array[index])
+        label = np.array(self.label_array[index])
 
         # 返回torch格式的特征和标签
-        return torch.from_numpy(buffer), torch.from_numpy(labels)
+        return torch.from_numpy(buffer), torch.from_numpy(label)
 
     def load_frames(self, file_dir):
         # 将文件夹下的数据集进行排序

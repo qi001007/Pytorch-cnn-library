@@ -4,7 +4,7 @@ import cv2
 from my_bar import simple_bar
 
 
-def process_video(ori_data_path ,video, action_name, save_dir):
+def process_video(ori_data_path, video, action_name, save_dir):
     resize_height = 128
     resize_width = 171
 
@@ -52,8 +52,8 @@ def preprocess(ori_data_path, output_data_path):
     if not os.path.exists(output_data_path):
         # 创建总输出目录
         os.makedirs(output_data_path, exist_ok=True)
-        # 创建 train/val/test 三大目录
-        for split in ('train', 'val', 'test'):
+        # 创建 train/test 三大目录
+        for split in ('train', 'test'):
             os.makedirs(os.path.join(output_data_path, split), exist_ok=True)
 
     # 获取原始文件下的所有的类别文件的路径
@@ -62,23 +62,18 @@ def preprocess(ori_data_path, output_data_path):
         # 获取每个类别文件下的视频类别名
         video_files = [name for name in os.listdir(file_path)]
         # 划分类别名下的所有视频名的元素
-        train_and_valid, test = train_test_split(video_files, test_size=0.2, random_state=42)
-        train, val = train_test_split(train_and_valid, test_size=0.2, random_state=42)
+        train, test = train_test_split(video_files, test_size=0.2, random_state=42)
 
         # 生成对应类别名视频名的文件路径
         # 创建每个类别对应的子目录（train/val/test 各一次）
         train_dir = os.path.join(output_data_path, 'train', file)
-        val_dir = os.path.join(output_data_path, 'val', file)
         test_dir = os.path.join(output_data_path, 'test', file)
         os.makedirs(train_dir, exist_ok=True)
-        os.makedirs(val_dir, exist_ok=True)
         os.makedirs(test_dir, exist_ok=True)
 
         # 分别对train，val，test数据做操作
         for _, video in simple_bar(train, desc="train_processing", unit="video"):
             process_video(ori_data_path, video, file, train_dir)
-        for _, video in simple_bar(val, desc="val_processing", unit="video"):
-            process_video(ori_data_path, video, file, val_dir)
         for _, video in simple_bar(test, desc="test_processing", unit="video"):
             process_video(ori_data_path, video, file, test_dir)
         print('{}划分完成'.format(file))

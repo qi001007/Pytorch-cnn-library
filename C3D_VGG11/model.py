@@ -1,10 +1,11 @@
+import os
 import torch
 from torch import nn
 from torchsummary import summary
 
 
 class C3D_VGG11(nn.Module):
-    def __init__(self, num_classes, pretrained):
+    def __init__(self, num_classes, pretrained=False, pretrained_weights_path='ucf101-caffe.pth'):
         super(C3D_VGG11, self).__init__()
         self.block1 = nn.Sequential(nn.Conv3d(in_channels=3, out_channels=64, kernel_size=(3, 3, 3),
                                               stride=(1, 1, 1), padding=(1, 1, 1)),
@@ -45,7 +46,12 @@ class C3D_VGG11(nn.Module):
         self.__init__weight()
 
         if pretrained:
-            self.__load__pretrained_weights()
+            # 检查预训练权重文件是否存在
+            if os.path.exists(pretrained_weights_path):
+                self.__load__pretrained_weights(start_level=1, end_level=16, weights_path=pretrained_weights_path)
+            else:
+                print(f"警告: 预训练权重文件不存在: {pretrained_weights_path}")
+                print("将使用随机初始化的权重")
 
     # 前向传播函数
     def forward(self, x):
@@ -79,9 +85,16 @@ class C3D_VGG11(nn.Module):
                     nn.init.constant_(m.bias, val=0)
 
     # 加载预训练权重
-    def __load__pretrained_weights(self, start_level=1, end_level=16):
+
+    def __load__pretrained_weights(self, start_level=1, end_level=16, weights_path='ucf101-caffe.pth'):
+        # 检查文件是否存在
+        if not os.path.exists(weights_path):
+            print(f"错误: 预训练权重文件不存在: {weights_path}")
+            return
+
         # torch.load把pth中的保存的state_dict读成py中的字典
-        pre_weights = torch.load('ucf101-caffe.pth')
+        pre_weights = torch.load(weights_path)
+        print(f"加载预训练权重: {weights_path}")
         print(pre_weights.keys())
         # .state_dict()中是py中的字典形式
         self_weights = self.state_dict()
@@ -120,6 +133,6 @@ if __name__ == '__main__':
     print(device)
 
     # inputs = torch.rand(1, 3, 16, 112, 112)
-    C3D_VGG11 = C3D_VGG11(num_classes=101).to(device)
+    C3D_VGG11 = C3D_VGG11(num_classes=101, pretrained=True).to(device)
     # print(summary(C3D_VGG11, inputs))
     print(summary(C3D_VGG11, input_size=(3, 16, 112, 112)))
