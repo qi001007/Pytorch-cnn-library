@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QFrame { background:rgb(255, 255, 255) }</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>5</number>
+    </property>
+    <property name="topMargin">
+     <number>5</number>
+    </property>
+    <property name="rightMargin">
+     <number>5</number>
+    </property>
+    <property name="bottomMargin">
+     <number>5</number>
+    </property>
+    <property name="spacing">
+     <number>5</number>
+    </property>
+    <item row="0" column="1">
+     <widget class="QFrame" name="image_frame">
+      <property name="styleSheet">
+       <string notr="true">QFrame { 
+	background: rgb(247, 247, 247);
+	border-radius: 12px;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="image">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="result">
+         <property name="minimumSize">
+          <size>
+           <width>100</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777211</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    /* 背景色：想用纯色就改 rgb 或 #xxxxxx；想要透明写 rgba(0,0,0,0) */
+    background-color: rgb(240, 240, 240);
+
+    /* 圆角半径：越大越“药丸”，写 50% 可做成正圆（前提是控件本身正方形） */
+    border-radius: 6px;
+	/* 边框：宽度 样式 颜色；不需要就写 0px */
+    border: 2px solid rgb(101, 219, 255);
+	/* 文字颜色 */
+    color: rgb(0, 0, 0);
+
+    /* 字体：大小、家族、粗细 */
+    font: 14px &quot;Microsoft YaHei&quot;;
+    font-weight: normal;
+	/* 内边距：上 右 下 左；想文字往哪挪就改哪边 */
+    padding: 5px 8px 8px 8px
+	
+}</string>
+         </property>
+         <property name="text">
+          <string>res:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="pre">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    /* 背景色：想用纯色就改 rgb 或 #xxxxxx；想要透明写 rgba(0,0,0,0) */
+    background-color: rgb(240, 240, 240);
+
+    /* 圆角半径：越大越“药丸”，写 50% 可做成正圆（前提是控件本身正方形） */
+    border-radius: 6px;
+	/* 边框：宽度 样式 颜色；不需要就写 0px */
+    border: 2px solid rgb(101, 219, 255);
+	/* 文字颜色 */
+    color: rgb(0, 0, 0);
+
+    /* 字体：大小、家族、粗细 */
+    font: 14px &quot;Microsoft YaHei&quot;;
+    font-weight: normal;
+	/* 内边距：上 右 下 左；想文字往哪挪就改哪边 */
+    padding: 2px 8px 6px 8px
+	
+}</string>
+         </property>
+         <property name="text">
+          <string>pre:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QFrame" name="state_bar">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame { 
+	background:rgb(221, 221, 221);
+	border-radius: 12px;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="infer_label">
+         <property name="minimumSize">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    /* 背景色：想用纯色就改 rgb 或 #xxxxxx；想要透明写 rgba(0,0,0,0) */
+    background-color: rgb(240, 240, 240);
+
+    /* 圆角半径：越大越“药丸”，写 50% 可做成正圆（前提是控件本身正方形） */
+    border-radius: 6px;
+	/* 边框：宽度 样式 颜色；不需要就写 0px */
+    border: 2px solid rgb(101, 219, 255);
+	/* 文字颜色 */
+    color: rgb(0, 0, 0);
+
+    /* 字体：大小、家族、粗细 */
+    font: 12px &quot;Microsoft YaHei&quot;;
+    font-weight: normal;
+	/* 内边距：上 右 下 左；想文字往哪挪就改哪边 */
+    padding: 0px 3px 1px 5px
+	
+}</string>
+         </property>
+         <property name="text">
+          <string>infer:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="infer_progress">
+         <property name="value">
+          <number>24</number>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="global_infer_label">
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    /* 背景色：想用纯色就改 rgb 或 #xxxxxx；想要透明写 rgba(0,0,0,0) */
+    background-color: rgb(240, 240, 240);
+
+    /* 圆角半径：越大越“药丸”，写 50% 可做成正圆（前提是控件本身正方形） */
+    border-radius: 6px;
+	/* 边框：宽度 样式 颜色；不需要就写 0px */
+    border: 2px solid rgb(101, 219, 255);
+	/* 文字颜色 */
+    color: rgb(0, 0, 0);
+
+    /* 字体：大小、家族、粗细 */
+    font: 12px &quot;Microsoft YaHei&quot;;
+    font-weight: normal;
+	/* 内边距：上 右 下 左；想文字往哪挪就改哪边 */
+    padding: 0px 3px 2px 5px
+	
+}</string>
+         </property>
+         <property name="text">
+          <string>glaob infer:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressBar">
+         <property name="value">
+          <number>24</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QFrame" name="menu">
+      <property name="minimumSize">
+       <size>
+        <width>120</width>
+        <height>250</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame { 
+	background: rgb(221, 221, 221);
+	border-radius: 12px;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="start">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	border-radius: 9px;
+    /* 背景颜色：想换就改 16 进制色值 */
+    background-color: rgb(101, 219, 255);
+	/* 边框：宽度 0 表示去掉系统默认边框 */
+	border: 0px;
+	/* 文字颜色 */
+    color: white;
+	/* 字体：大小、家族、粗细 */
+	text-align: center;
+    font: 16px &quot;Microsoft YaHei&quot;;
+    font-weight: bold;
+	padding-top: 1px;
+	padding-bottom: 3px;
+}
+
+QPushButton:hover {
+    background-color: rgb(172, 229, 255);   /* 悬停时亮一点 */
+    border: 0px;                 /* 保持无边框 */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9;   /* 按下时深一点 */
+    /* 如果想做“内陷”效果，可以加内阴影或下移 */
+    padding-top: 7px;            /* 文字向下 1px，模拟按下 */
+    padding-bottom: 5px;
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string>start</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="stop">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	border-radius: 9px;
+    /* 背景颜色：想换就改 16 进制色值 */
+    background-color: rgb(101, 219, 255);
+	/* 边框：宽度 0 表示去掉系统默认边框 */
+	border: 0px;
+	/* 文字颜色 */
+    color: white;
+	/* 字体：大小、家族、粗细 */
+	text-align: center;
+    font: 16px &quot;Microsoft YaHei&quot;;
+    font-weight: bold;
+	padding-top: 1px;
+	padding-bottom: 3px;
+}
+
+QPushButton:hover {
+    background-color: rgb(172, 229, 255);   /* 悬停时亮一点 */
+    border: 0px;                 /* 保持无边框 */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9;   /* 按下时深一点 */
+    /* 如果想做“内陷”效果，可以加内阴影或下移 */
+    padding-top: 7px;            /* 文字向下 1px，模拟按下 */
+    padding-bottom: 5px;
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string>stop</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="restart">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	border-radius: 9px;
+    /* 背景颜色：想换就改 16 进制色值 */
+    background-color: rgb(101, 219, 255);
+	/* 边框：宽度 0 表示去掉系统默认边框 */
+	border: 0px;
+	/* 文字颜色 */
+    color: white;
+	/* 字体：大小、家族、粗细 */
+	text-align: center;
+    font: 16px &quot;Microsoft YaHei&quot;;
+    font-weight: bold;
+	padding-top: 1px;
+	padding-bottom: 3px;
+}
+
+QPushButton:hover {
+    background-color: rgb(172, 229, 255);   /* 悬停时亮一点 */
+    border: 0px;                 /* 保持无边框 */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9;   /* 按下时深一点 */
+    /* 如果想做“内陷”效果，可以加内阴影或下移 */
+    padding-top: 7px;            /* 文字向下 1px，模拟按下 */
+    padding-bottom: 5px;
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string>restart</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="infer">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	border-radius: 9px;
+    /* 背景颜色：想换就改 16 进制色值 */
+    background-color: rgb(101, 219, 255);
+	/* 边框：宽度 0 表示去掉系统默认边框 */
+	border: 0px;
+	/* 文字颜色 */
+    color: white;
+	/* 字体：大小、家族、粗细 */
+	text-align: center;
+    font: 16px &quot;Microsoft YaHei&quot;;
+    font-weight: bold;
+	padding-top: 1px;
+	padding-bottom: 3px;
+}
+
+QPushButton:hover {
+    background-color: rgb(172, 229, 255);   /* 悬停时亮一点 */
+    border: 0px;                 /* 保持无边框 */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9;   /* 按下时深一点 */
+    /* 如果想做“内陷”效果，可以加内阴影或下移 */
+    padding-top: 7px;            /* 文字向下 1px，模拟按下 */
+    padding-bottom: 5px;
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string>infer</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="global_infer">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+	border-radius: 9px;
+    /* 背景颜色：想换就改 16 进制色值 */
+    background-color: rgb(101, 219, 255);
+	/* 边框：宽度 0 表示去掉系统默认边框 */
+	border: 0px;
+	/* 文字颜色 */
+    color: white;
+	/* 字体：大小、家族、粗细 */
+	text-align: center;
+    font: 16px &quot;Microsoft YaHei&quot;;
+    font-weight: bold;
+	padding-top: 1px;
+	padding-bottom: 3px;
+}
+
+QPushButton:hover {
+    background-color: rgb(172, 229, 255);   /* 悬停时亮一点 */
+    border: 0px;                 /* 保持无边框 */
+}
+
+QPushButton:pressed {
+    background-color: #2980b9;   /* 按下时深一点 */
+    /* 如果想做“内陷”效果，可以加内阴影或下移 */
+    padding-top: 7px;            /* 文字向下 1px，模拟按下 */
+    padding-bottom: 5px;
+}
+
+</string>
+         </property>
+         <property name="text">
+          <string>global infer</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>640</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
