@@ -30,7 +30,7 @@ def inference():
     model.to(device)
     model.eval()
 
-    video = "data_ucf_101/ApplyEyeMakeup/v_ApplyEyeMakeup_g01_c01.avi"
+    video = "data_ucf_101/ApplyLipstick/v_ApplyLipstick_g01_c01.avi"
     cap = cv2.VideoCapture(video)
     retaining = True
 

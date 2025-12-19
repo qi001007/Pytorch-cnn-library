@@ -30,14 +30,10 @@ class Ui_MainWindow(object):
         self.image_frame.setObjectName("image_frame")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.image_frame)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.image = QtWidgets.QLabel(parent=self.image_frame)
-        self.image.setText("")
-        self.image.setObjectName("image")
-        self.gridLayout_2.addWidget(self.image, 0, 0, 1, 2)
-        self.result = QtWidgets.QLabel(parent=self.image_frame)
-        self.result.setMinimumSize(QtCore.QSize(100, 30))
-        self.result.setMaximumSize(QtCore.QSize(16777211, 30))
-        self.result.setStyleSheet("QLabel {\n"
+        self.file_path = QtWidgets.QLineEdit(parent=self.image_frame)
+        self.file_path.setMinimumSize(QtCore.QSize(0, 25))
+        self.file_path.setMaximumSize(QtCore.QSize(16777215, 25))
+        self.file_path.setStyleSheet("QLineEdit{\n"
 "    /* 背景色：想用纯色就改 rgb 或 #xxxxxx；想要透明写 rgba(0,0,0,0) */\n"
 "    background-color: rgb(240, 240, 240);\n"
 "\n"
@@ -52,11 +48,11 @@ class Ui_MainWindow(object):
 "    font: 14px \"Microsoft YaHei\";\n"
 "    font-weight: normal;\n"
 "    /* 内边距：上 右 下 左；想文字往哪挪就改哪边 */\n"
-"    padding: 5px 8px 8px 8px\n"
+"    padding: 3px 8px 4px 8px\n"
 "    \n"
 "}")
-        self.result.setObjectName("result")
-        self.gridLayout_2.addWidget(self.result, 1, 0, 1, 1)
+        self.file_path.setObjectName("file_path")
+        self.gridLayout_2.addWidget(self.file_path, 0, 0, 1, 2)
         self.pre = QtWidgets.QLabel(parent=self.image_frame)
         self.pre.setMinimumSize(QtCore.QSize(0, 30))
         self.pre.setMaximumSize(QtCore.QSize(16777215, 30))
@@ -79,7 +75,63 @@ class Ui_MainWindow(object):
 "    \n"
 "}")
         self.pre.setObjectName("pre")
-        self.gridLayout_2.addWidget(self.pre, 1, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.pre, 3, 1, 1, 1)
+        self.res = QtWidgets.QLabel(parent=self.image_frame)
+        self.res.setMinimumSize(QtCore.QSize(100, 30))
+        self.res.setMaximumSize(QtCore.QSize(16777211, 30))
+        self.res.setStyleSheet("QLabel {\n"
+"    /* 背景色：想用纯色就改 rgb 或 #xxxxxx；想要透明写 rgba(0,0,0,0) */\n"
+"    background-color: rgb(240, 240, 240);\n"
+"\n"
+"    /* 圆角半径：越大越“药丸”，写 50% 可做成正圆（前提是控件本身正方形） */\n"
+"    border-radius: 6px;\n"
+"    /* 边框：宽度 样式 颜色；不需要就写 0px */\n"
+"    border: 2px solid rgb(101, 219, 255);\n"
+"    /* 文字颜色 */\n"
+"    color: rgb(0, 0, 0);\n"
+"\n"
+"    /* 字体：大小、家族、粗细 */\n"
+"    font: 14px \"Microsoft YaHei\";\n"
+"    font-weight: normal;\n"
+"    /* 内边距：上 右 下 左；想文字往哪挪就改哪边 */\n"
+"    padding: 5px 8px 8px 8px\n"
+"    \n"
+"}")
+        self.res.setObjectName("res")
+        self.gridLayout_2.addWidget(self.res, 3, 0, 1, 1)
+        self.image = QtWidgets.QLabel(parent=self.image_frame)
+        self.image.setText("")
+        self.image.setObjectName("image")
+        self.gridLayout_2.addWidget(self.image, 2, 0, 1, 3)
+        self.file_dir = QtWidgets.QToolButton(parent=self.image_frame)
+        self.file_dir.setObjectName("file_dir")
+        self.gridLayout_2.addWidget(self.file_dir, 0, 2, 1, 1)
+        self.model_path = QtWidgets.QLineEdit(parent=self.image_frame)
+        self.model_path.setMinimumSize(QtCore.QSize(0, 25))
+        self.model_path.setMaximumSize(QtCore.QSize(16777215, 25))
+        self.model_path.setStyleSheet("QLineEdit{\n"
+"    /* 背景色：想用纯色就改 rgb 或 #xxxxxx；想要透明写 rgba(0,0,0,0) */\n"
+"    background-color: rgb(240, 240, 240);\n"
+"\n"
+"    /* 圆角半径：越大越“药丸”，写 50% 可做成正圆（前提是控件本身正方形） */\n"
+"    border-radius: 6px;\n"
+"    /* 边框：宽度 样式 颜色；不需要就写 0px */\n"
+"    border: 2px solid rgb(101, 219, 255);\n"
+"    /* 文字颜色 */\n"
+"    color: rgb(0, 0, 0);\n"
+"\n"
+"    /* 字体：大小、家族、粗细 */\n"
+"    font: 14px \"Microsoft YaHei\";\n"
+"    font-weight: normal;\n"
+"    /* 内边距：上 右 下 左；想文字往哪挪就改哪边 */\n"
+"    padding: 3px 8px 4px 8px\n"
+"    \n"
+"}")
+        self.model_path.setObjectName("model_path")
+        self.gridLayout_2.addWidget(self.model_path, 1, 0, 1, 2)
+        self.model_dir = QtWidgets.QToolButton(parent=self.image_frame)
+        self.model_dir.setObjectName("model_dir")
+        self.gridLayout_2.addWidget(self.model_dir, 1, 2, 1, 1)
         self.gridLayout.addWidget(self.image_frame, 0, 1, 1, 1)
         self.state_bar = QtWidgets.QFrame(parent=self.centralwidget)
         self.state_bar.setMinimumSize(QtCore.QSize(0, 40))
@@ -93,10 +145,10 @@ class Ui_MainWindow(object):
         self.state_bar.setObjectName("state_bar")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.state_bar)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.infer_label = QtWidgets.QLabel(parent=self.state_bar)
-        self.infer_label.setMinimumSize(QtCore.QSize(40, 20))
-        self.infer_label.setMaximumSize(QtCore.QSize(16777215, 20))
-        self.infer_label.setStyleSheet("QLabel {\n"
+        self.data_path = QtWidgets.QLabel(parent=self.state_bar)
+        self.data_path.setMinimumSize(QtCore.QSize(40, 20))
+        self.data_path.setMaximumSize(QtCore.QSize(16777215, 20))
+        self.data_path.setStyleSheet("QLabel {\n"
 "    /* 背景色：想用纯色就改 rgb 或 #xxxxxx；想要透明写 rgba(0,0,0,0) */\n"
 "    background-color: rgb(240, 240, 240);\n"
 "\n"
@@ -114,15 +166,13 @@ class Ui_MainWindow(object):
 "    padding: 0px 3px 1px 5px\n"
 "    \n"
 "}")
-        self.infer_label.setObjectName("infer_label")
-        self.horizontalLayout.addWidget(self.infer_label)
-        self.infer_progress = QtWidgets.QProgressBar(parent=self.state_bar)
-        self.infer_progress.setProperty("value", 24)
-        self.infer_progress.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignTop)
-        self.infer_progress.setObjectName("infer_progress")
-        self.horizontalLayout.addWidget(self.infer_progress)
-        self.global_infer_label = QtWidgets.QLabel(parent=self.state_bar)
-        self.global_infer_label.setStyleSheet("QLabel {\n"
+        self.data_path.setObjectName("data_path")
+        self.horizontalLayout.addWidget(self.data_path)
+        self.data_dir = QtWidgets.QToolButton(parent=self.state_bar)
+        self.data_dir.setObjectName("data_dir")
+        self.horizontalLayout.addWidget(self.data_dir)
+        self.data_label_path = QtWidgets.QLabel(parent=self.state_bar)
+        self.data_label_path.setStyleSheet("QLabel {\n"
 "    /* 背景色：想用纯色就改 rgb 或 #xxxxxx；想要透明写 rgba(0,0,0,0) */\n"
 "    background-color: rgb(240, 240, 240);\n"
 "\n"
@@ -140,12 +190,35 @@ class Ui_MainWindow(object):
 "    padding: 0px 3px 2px 5px\n"
 "    \n"
 "}")
-        self.global_infer_label.setObjectName("global_infer_label")
-        self.horizontalLayout.addWidget(self.global_infer_label)
-        self.progressBar = QtWidgets.QProgressBar(parent=self.state_bar)
-        self.progressBar.setProperty("value", 24)
-        self.progressBar.setObjectName("progressBar")
-        self.horizontalLayout.addWidget(self.progressBar)
+        self.data_label_path.setObjectName("data_label_path")
+        self.horizontalLayout.addWidget(self.data_label_path)
+        self.data_label_dir = QtWidgets.QToolButton(parent=self.state_bar)
+        self.data_label_dir.setObjectName("data_label_dir")
+        self.horizontalLayout.addWidget(self.data_label_dir)
+        self.wts_path = QtWidgets.QLabel(parent=self.state_bar)
+        self.wts_path.setStyleSheet("QLabel {\n"
+"    /* 背景色：想用纯色就改 rgb 或 #xxxxxx；想要透明写 rgba(0,0,0,0) */\n"
+"    background-color: rgb(240, 240, 240);\n"
+"\n"
+"    /* 圆角半径：越大越“药丸”，写 50% 可做成正圆（前提是控件本身正方形） */\n"
+"    border-radius: 6px;\n"
+"    /* 边框：宽度 样式 颜色；不需要就写 0px */\n"
+"    border: 2px solid rgb(101, 219, 255);\n"
+"    /* 文字颜色 */\n"
+"    color: rgb(0, 0, 0);\n"
+"\n"
+"    /* 字体：大小、家族、粗细 */\n"
+"    font: 12px \"Microsoft YaHei\";\n"
+"    font-weight: normal;\n"
+"    /* 内边距：上 右 下 左；想文字往哪挪就改哪边 */\n"
+"    padding: 0px 3px 2px 5px\n"
+"    \n"
+"}")
+        self.wts_path.setObjectName("wts_path")
+        self.horizontalLayout.addWidget(self.wts_path)
+        self.wts_dir = QtWidgets.QToolButton(parent=self.state_bar)
+        self.wts_dir.setObjectName("wts_dir")
+        self.horizontalLayout.addWidget(self.wts_dir)
         self.gridLayout.addWidget(self.state_bar, 1, 0, 1, 2)
         self.menu = QtWidgets.QFrame(parent=self.centralwidget)
         self.menu.setMinimumSize(QtCore.QSize(120, 250))
@@ -330,12 +403,88 @@ class Ui_MainWindow(object):
 "")
         self.global_infer.setObjectName("global_infer")
         self.verticalLayout.addWidget(self.global_infer)
+        self.frame = QtWidgets.QFrame(parent=self.menu)
+        self.frame.setMinimumSize(QtCore.QSize(0, 40))
+        self.frame.setFrameShape(QtWidgets.QFrame.Shape.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
+        self.frame.setObjectName("frame")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frame)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.last = QtWidgets.QPushButton(parent=self.frame)
+        self.last.setMinimumSize(QtCore.QSize(0, 20))
+        self.last.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.last.setStyleSheet("QPushButton {\n"
+"    border-radius: 9px;\n"
+"    /* 背景颜色：想换就改 16 进制色值 */\n"
+"    background-color: rgb(101, 219, 255);\n"
+"    /* 边框：宽度 0 表示去掉系统默认边框 */\n"
+"    border: 0px;\n"
+"    /* 文字颜色 */\n"
+"    color: white;\n"
+"    /* 字体：大小、家族、粗细 */\n"
+"    text-align: center;\n"
+"    font: 16px \"Microsoft YaHei\";\n"
+"    font-weight: bold;\n"
+"    padding-top: 1px;\n"
+"    padding-bottom: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(172, 229, 255);   /* 悬停时亮一点 */\n"
+"    border: 0px;                 /* 保持无边框 */\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2980b9;   /* 按下时深一点 */\n"
+"    /* 如果想做“内陷”效果，可以加内阴影或下移 */\n"
+"    padding-top: 7px;            /* 文字向下 1px，模拟按下 */\n"
+"    padding-bottom: 5px;\n"
+"}\n"
+"\n"
+"")
+        self.last.setObjectName("last")
+        self.horizontalLayout_2.addWidget(self.last)
+        self.next = QtWidgets.QPushButton(parent=self.frame)
+        self.next.setMinimumSize(QtCore.QSize(0, 20))
+        self.next.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.next.setStyleSheet("QPushButton {\n"
+"    border-radius: 9px;\n"
+"    /* 背景颜色：想换就改 16 进制色值 */\n"
+"    background-color: rgb(101, 219, 255);\n"
+"    /* 边框：宽度 0 表示去掉系统默认边框 */\n"
+"    border: 0px;\n"
+"    /* 文字颜色 */\n"
+"    color: white;\n"
+"    /* 字体：大小、家族、粗细 */\n"
+"    text-align: center;\n"
+"    font: 16px \"Microsoft YaHei\";\n"
+"    font-weight: bold;\n"
+"    padding-top: 1px;\n"
+"    padding-bottom: 3px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(172, 229, 255);   /* 悬停时亮一点 */\n"
+"    border: 0px;                 /* 保持无边框 */\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #2980b9;   /* 按下时深一点 */\n"
+"    /* 如果想做“内陷”效果，可以加内阴影或下移 */\n"
+"    padding-top: 7px;            /* 文字向下 1px，模拟按下 */\n"
+"    padding-bottom: 5px;\n"
+"}\n"
+"\n"
+"")
+        self.next.setObjectName("next")
+        self.horizontalLayout_2.addWidget(self.next)
+        self.verticalLayout.addWidget(self.frame)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout.addItem(spacerItem)
         self.gridLayout.addWidget(self.menu, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
 
@@ -345,12 +494,20 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.result.setText(_translate("MainWindow", "res:"))
         self.pre.setText(_translate("MainWindow", "pre:"))
-        self.infer_label.setText(_translate("MainWindow", "infer:"))
-        self.global_infer_label.setText(_translate("MainWindow", "glaob infer:"))
+        self.res.setText(_translate("MainWindow", "res:"))
+        self.file_dir.setText(_translate("MainWindow", "..."))
+        self.model_dir.setText(_translate("MainWindow", "..."))
+        self.data_path.setText(_translate("MainWindow", "data_path:"))
+        self.data_dir.setText(_translate("MainWindow", "..."))
+        self.data_label_path.setText(_translate("MainWindow", "data_label_path:"))
+        self.data_label_dir.setText(_translate("MainWindow", "..."))
+        self.wts_path.setText(_translate("MainWindow", "wts_path:"))
+        self.wts_dir.setText(_translate("MainWindow", "..."))
         self.start.setText(_translate("MainWindow", "start"))
         self.stop.setText(_translate("MainWindow", "stop"))
         self.restart.setText(_translate("MainWindow", "restart"))
         self.infer.setText(_translate("MainWindow", "infer"))
         self.global_infer.setText(_translate("MainWindow", "global infer"))
+        self.last.setText(_translate("MainWindow", "last"))
+        self.next.setText(_translate("MainWindow", "next"))
